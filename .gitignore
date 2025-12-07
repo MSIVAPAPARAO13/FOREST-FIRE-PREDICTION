@@ -1,0 +1,15 @@
+# Virtual Environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# ML model files (important)
+*.pkl
+
+# Environment variables
+.env
+
+# VS Code settings
+.vscode/

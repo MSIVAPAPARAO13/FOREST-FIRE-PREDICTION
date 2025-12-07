@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FWI Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #1e1e1e;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login {
+            width: 420px;
+            background: #2c2c2c;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        .login h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login input {
+            margin-bottom: 10px;
+        }
+
+        .result-text {
+            margin-top: 20px;
+            text-align: center;
+            color: #00ff99;
+        }
+    </style>
+</head>
+
+<body>
+<div class="login">
+    <h1>FWI Prediction</h1>
+
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict_datapoint') }}" method="post">
+
+        <input type="text" name="Temperature" placeholder="Temperature" required class="form-control">
+
+        <input type="text" name="RH" placeholder="RH" required class="form-control">
+
+        <input type="text" name="Ws" placeholder="Ws" required class="form-control">
+
+        <input type="text" name="Rain" placeholder="Rain" required class="form-control">
+
+        <input type="text" name="FFMC" placeholder="FFMC" required class="form-control">
+
+        <input type="text" name="DMC" placeholder="DMC" required class="form-control">
+
+        <input type="text" name="ISI" placeholder="ISI" required class="form-control">
+
+        <input type="text" name="Classes" placeholder="Classes (0 = No Fire, 1 = Fire)" required class="form-control">
+
+        <input type="text" name="Region" placeholder="Region" required class="form-control">
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg w-100 mt-3">
+            Predict
+        </button>
+    </form>
+
+    {% if results is defined %}
+    <h2 class="result-text">
+         THE FWI Prediction is: {{ results }}
+    </h2>
+    {% endif %}
+
+</div>
+</body>
+</html>
